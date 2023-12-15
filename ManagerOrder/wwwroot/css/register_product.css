@@ -1,0 +1,44 @@
+﻿@media (max-width: 767.98px) {
+    .table-responsive {
+        display: none;
+    }
+
+    .list-card {
+        display: block !important;
+    }
+}
+
+.table-responsive{
+    height:75vh !important;
+    overflow:auto;
+}
+
+.list-card {
+    height: 75vh !important;
+    overflow: auto;
+}
+
+.table {
+    table-layout: auto !important
+}
+
+    .table tbody tr:focus {
+        background-color: #ffd800;
+    }
+
+    .table td:first-child {
+        cursor: pointer;
+    }
+
+        .table td:first-child:hover {
+            text-decoration: underline;
+        }
+
+
+.list-card .card .card-hearder .card-title {
+    cursor: pointer;
+}
+
+    .list-card .card .card-hearder .card-title:hover {
+        text-decoration: underline;
+    }

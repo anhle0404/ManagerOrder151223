@@ -1,0 +1,174 @@
+﻿
+@{ ViewData["Title"] = "Đơn đặt hàng"; }
+
+<link href="~/css/history_order.css" rel="stylesheet" />
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="javascript:void(0);">Trang chủ</a>
+        </li>
+        <li class="breadcrumb-item active">Đơn hàng</li>
+    </ol>
+</nav>
+
+<section class="section">
+    <div class="row">
+        <div class="card m-0 p-0">
+            <div class="card-hearder border-bottom p-2 sticky-top bg-white">
+                <form action="javascript:GetAllOrder();" method="get">
+                    <div class="row m-0">
+                        <div class="col-md-12 col-lg-4 p-1">
+                            <div class="form-floating form-floating-outline">
+                                <select class="form-select" id="isapproved_history_order" onchange="return GetAllOrder();">
+                                    <option value="-1">--Tất cả--</option>
+                                    <option value="0" selected>Chưa giao</option>
+                                    <option value="1">Đã giao</option>
+                                </select>
+                                <label for="isapproved_history_order">Trạng thái</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-lg-4 p-1">
+                            @*<div class="input-group">
+                                    <div class="form-floating form-floating-outline my-1">
+                                        <input type="text" id="keyword_history_order" class="form-control" placeholder="" oninput="return GetAllOrder();" />
+                                        <label for="keyword_history_order">Từ khoá</label>
+                                    </div>
+                                    <button class="btn btn-primary waves-effect">Button</button>
+                                </div>*@
+                            <div class="input-group input-group-merge">
+                                <div class="form-floating form-floating-outline">
+                                    <input type="text" id="keyword_history_order" class="form-control" placeholder="" oninput="return GetAllOrder();" />
+                                    <label for="password">Password</label>
+                                </div>
+                                <button class="btn btn-primary"><i class="mdi mdi-magnify"></i></button>
+                            </div>
+                        </div>
+
+                        @*<div class="col-md-12 col-lg-4 p-1">
+                                <button class="btn btn-primary w-100 h-100">
+                                    Tìm kiếm
+                                </button>
+                            </div>*@
+                    </div>
+
+                    @*<div class="col-sm-4 p-1">
+                            <div class="form-floating">
+                                <select class="form-select" id="isapproved_history_order" onchange="return GetAllOrder();">
+                                    <option value="-1">--Tất cả--</option>
+                                    <option value="0" selected>Chưa giao</option>
+                                    <option value="1">Đã giao</option>
+                                </select>
+                                <label for="floatingSelect">Trạng thái</label>
+                            </div>
+                        </div>*@
+                    @*<div class="col-sm-4 p-1">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="keyword_history_order" placeholder="Nhập từ cần tìm..." value="">
+                                <label for="floatingName">Từ khóa</label>
+                            </div>
+                        </div>*@
+                    @*<div class="col-sm-4 p-1">
+
+                        </div>*@
+                </form>
+            </div>
+            <div class="card-body p-2">
+                <div class="table-responsive text-nowrap">
+                    <table class="table table-hover table-bordered align-middle">
+                        <thead class="table-light">
+                            <tr class="sticky-top-table text-center">
+                                <th class="text-nowrap sticky-left-table">Mã đơn hàng</th>
+                                <th class="text-nowrap">Khách hàng</th>
+                                <th class="text-nowrap">Tổng tiền</th>
+                                <th class="text-nowrap">Tiền khách trả</th>
+                                <th class="text-nowrap">Tiền khách nợ</th>
+                                <th class="text-nowrap">Ngày</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tbody">
+                            <tr tabindex="0">
+                                <td class="text-nowrap">
+                                    <a style="text-decoration:underline !important;" onclick="return GetOrderDetail();">Brandon Jacob</a>
+                                </td>
+                                <td style="white-space:pre-line">Designer</td>
+                                <td class="text-nowrap">28</td>
+                                <td class="text-nowrap">2016-05-25</td>
+                                <td class="text-nowrap">2016-05-25</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="list-card" style="display:none;">
+                    <div class="card m-1 p-0">
+                        <div class="card-hearder border-bottom p-2 justify-content-between bg-success">
+                            <h5 class="card-title text-uppercase p-0 m-0">đơn hàng</h5>
+                            2016-05-25
+                        </div>
+                        <div class="card-body p-1">
+                            khách hàng
+                        </div>
+                        <div class="card-footer d-flex justify-content-between p-2 flex-wrap" style="flex-wrap:wrap;">
+                            <small>Tổng tiền: <span class="text-dark fw-bold">10.000đ</span></small>
+                            <small>Tiền khách trả: <span class="text-dark fw-bold">1</span></small>
+                            <small>Tiền khách nợ: <span class="text-dark fw-bold">1.000đ</span></small>
+                        </div>
+                    </div>
+
+                    <div class="card m-1 p-0">
+                        <div class="card-hearder border-bottom p-2 justify-content-between bg-warning">
+                            <h5 class="card-title text-uppercase p-0 m-0">đơn hàng</h5>
+                            2016-05-25
+                        </div>
+                        <div class="card-body p-1">
+                            khách hàng
+                        </div>
+                        <div class="card-footer d-flex justify-content-between p-2 flex-wrap" style="flex-wrap:wrap;">
+                            <small>Tổng tiền: <span class="text-dark fw-bold">10.000đ</span></small>
+                            <small>Tiền khách trả: <span class="text-dark fw-bold">1</span></small>
+                            <small>Tiền khách nợ: <span class="text-dark fw-bold">1.000đ</span></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--Modal xem chi tiết đơn hàng-->
+<div class="modal fade" id="basicModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header bg-light p-2">
+                <h5 class="modal-title text-dark fw-bold">mã đơn</h5>
+                <button type="button" class="btn-close text-danger" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-2">
+                <div class="list-group">
+                    @*@for (int i = 0; i < 10; i++)
+                        {
+                            <div class="card border-top border-primary border-2 m-1 p-0">
+                                <div class="card-body p-1">
+                                    <h5 class="card-title p-0 m-0">mã hàng</h5>
+                                    tên hàng
+                                </div>
+                                <div class="card-footer d-flex justify-content-between p-2 flex-wrap" style="flex-wrap:wrap;">
+                                    <small>Đơn giá: <span class="text-dark fw-bold">10.000đ</span></small>
+                                    <small>Số lượng: <span class="text-dark fw-bold">1</span></small>
+                                    <small>Thành tiền: <span class="text-dark fw-bold">1.000đ</span></small>
+                                </div>
+                            </div>
+                        }*@
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between bg-light p-2">
+                <p class="text-dark">Tổng tiền: <span class="text-danger">100.000đ</span></p>
+                <button type="button" class="btn btn-primary btn-sm" onclick="return onClickDelivered(1, '');">Giao hàng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/history_order.js" asp-append-version="true"></script>
